@@ -1,6 +1,6 @@
 # Grape::Msgpack
 
-[![Build Status](https://travis-ci.org/rosylilly/grape-msgpack.png?branch=master)](https://travis-ci.org/rosylilly/grape-msgpack)
+[![Gem Version](https://badge.fury.io/rb/grape-msgpack.png)](http://badge.fury.io/rb/grape-msgpack) [![Build Status](https://travis-ci.org/rosylilly/grape-msgpack.png?branch=master)](https://travis-ci.org/rosylilly/grape-msgpack)
 
 Message pack formatter for grape.
 
