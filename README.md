@@ -1,5 +1,7 @@
 # Grape::Msgpack
 
+[![Build Status](https://travis-ci.org/rosylilly/grape-msgpack.png?branch=master)](https://travis-ci.org/rosylilly/grape-msgpack)
+
 Message pack formatter for grape.
 
 ## Installation
