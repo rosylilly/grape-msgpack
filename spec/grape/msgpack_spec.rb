@@ -16,6 +16,8 @@ class MockEntity < Grape::Entity
 end
 
 class MockAPI < Grape::API
+  rescue_from :all
+
   default_format :msgpack
 
   get :test do
@@ -24,6 +26,10 @@ class MockAPI < Grape::API
 
   get :model do
     present MockModel.new('test_user', 21), with: MockEntity
+  end
+
+  get :exception do
+    raise StandardError, 'an error occurred'
   end
 end
 
@@ -41,7 +47,7 @@ describe MockAPI do
     end
 
     it { expect(response.status).to eq(200) }
-    it { expect(response.headers["Content-Type"]).to eq('application/x-msgpack') }
+    it { expect(response.headers['Content-Type']).to eq('application/x-msgpack') }
     it { expect(MessagePack.unpack(response.body)).to eq([1, 2, 3]) }
   end
 
@@ -52,7 +58,18 @@ describe MockAPI do
     end
 
     it { expect(response.status).to eq(200) }
-    it { expect(response.headers["Content-Type"]).to eq('application/x-msgpack') }
-    it { expect(MessagePack.unpack(response.body)).to eq("name" => "test_user") }
+    it { expect(response.headers['Content-Type']).to eq('application/x-msgpack') }
+    it { expect(MessagePack.unpack(response.body)).to eq('name' => 'test_user') }
+  end
+
+  describe 'GET /exception' do
+    subject(:response) do
+      get '/exception'
+      last_response
+    end
+
+    it { expect(response.status).to eq(403) }
+    it { expect(response.headers['Content-Type']).to eq('application/x-msgpack') }
+    it { expect(MessagePack.unpack(response.body)).to eq('error' => 'an error occurred') }
   end
 end
