@@ -68,7 +68,7 @@ describe MockAPI do
       last_response
     end
 
-    it { expect(response.status).to eq(403) }
+    it { expect(response.status).to eq(500) }
     it { expect(response.headers['Content-Type']).to eq('application/x-msgpack') }
     it { expect(MessagePack.unpack(response.body)).to eq('error' => 'an error occurred') }
   end
