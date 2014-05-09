@@ -25,6 +25,14 @@ module Grape
         end
       end
     end
+
+    module Parser
+      class << self
+        def call(object, env)
+          MessagePack.unpack(object)
+        end
+      end
+    end
   end
 end
 
@@ -34,6 +42,10 @@ end
 
 class << Grape::ErrorFormatter::Base
   FORMATTERS[:msgpack] = Grape::Msgpack::ErrorFormatter
+end
+
+class << Grape::Parser::Base
+  PARSERS[:msgpack] = Grape::Msgpack::Parser
 end
 
 Grape::ContentTypes::CONTENT_TYPES[:msgpack] = 'application/x-msgpack'
