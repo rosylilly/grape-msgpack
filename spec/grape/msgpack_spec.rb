@@ -31,6 +31,13 @@ class MockAPI < Grape::API
   get :exception do
     raise StandardError, 'an error occurred'
   end
+
+  params do
+    requires :name, type: String
+  end
+  post :input do
+    present name: params.name
+  end
 end
 
 describe MockAPI do
@@ -71,5 +78,17 @@ describe MockAPI do
     it { expect(response.status).to eq(500) }
     it { expect(response.headers['Content-Type']).to eq('application/x-msgpack') }
     it { expect(MessagePack.unpack(response.body)).to eq('error' => 'an error occurred') }
+  end
+
+  describe 'POST /input' do
+    subject(:response) do
+      header 'Content-Type', 'application/x-msgpack'
+      post '/input', { name: 'joe' }.to_msgpack
+      last_response
+    end
+
+    it { expect(response.status).to eq 201 }
+    it { expect(response.headers['Content-Type']).to eq('application/x-msgpack') }
+    it { expect(MessagePack.unpack(response.body)).to eq('name' => 'joe') }
   end
 end
