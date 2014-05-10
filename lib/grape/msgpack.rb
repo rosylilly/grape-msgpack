@@ -52,9 +52,12 @@ Grape::ContentTypes::CONTENT_TYPES[:msgpack] = 'application/x-msgpack'
 
 if defined?(Grape::Entity)
   class Grape::Entity
-    def to_msgpack(options = {})
-      options = options.to_h if options && options.respond_to?(:to_h)
-      MessagePack.pack(serializable_hash(options))
+    def to_msgpack(pack = nil)
+      if pack
+        pack.write(serializable_hash)
+      else
+        MessagePack.pack(serializable_hash)
+      end
     end
   end
 end

@@ -28,6 +28,10 @@ class MockAPI < Grape::API
     present MockModel.new('test_user', 21), with: MockEntity
   end
 
+  get :models do
+    present [MockModel.new('test_user', 21)], with: MockEntity
+  end
+
   get :exception do
     raise StandardError, 'an error occurred'
   end
@@ -67,6 +71,17 @@ describe MockAPI do
     it { expect(response.status).to eq(200) }
     it { expect(response.headers['Content-Type']).to eq('application/x-msgpack') }
     it { expect(MessagePack.unpack(response.body)).to eq('name' => 'test_user') }
+  end
+
+  describe 'GET /models' do
+    subject(:response) do
+      get '/models'
+      last_response
+    end
+
+    it { expect(response.status).to eq(200) }
+    it { expect(response.headers['Content-Type']).to eq('application/x-msgpack') }
+    it { expect(MessagePack.unpack(response.body).first).to eq('name' => 'test_user') }
   end
 
   describe 'GET /exception' do
