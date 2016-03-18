@@ -24,6 +24,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rack-test', '~> 0.6.2'
   spec.add_development_dependency 'grape-entity', '~> 0.5.0'
 
-  spec.add_dependency 'grape'
+  spec.add_dependency 'grape', '>= 0.15.1'
   spec.add_dependency 'msgpack', '>= 0.7.4'
 end
