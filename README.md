@@ -1,6 +1,6 @@
 # Grape::Msgpack
 
-[![Gem Version](https://badge.fury.io/rb/grape-msgpack.png)](http://badge.fury.io/rb/grape-msgpack) [![Build Status](https://travis-ci.org/rosylilly/grape-msgpack.png?branch=master)](https://travis-ci.org/rosylilly/grape-msgpack) [![Coverage Status](https://coveralls.io/repos/rosylilly/grape-msgpack/badge.png?branch=master)](https://coveralls.io/r/rosylilly/grape-msgpack?branch=master) [![Code Climate](https://codeclimate.com/github/rosylilly/grape-msgpack.png)](https://codeclimate.com/github/rosylilly/grape-msgpack)
+[![Gem Version](https://badge.fury.io/rb/grape-msgpack.svg)](http://badge.fury.io/rb/grape-msgpack) [![Build Status](https://travis-ci.org/rosylilly/grape-msgpack.svg?branch=master)](https://travis-ci.org/rosylilly/grape-msgpack) [![Coverage Status](https://coveralls.io/repos/rosylilly/grape-msgpack/badge.svg?branch=master)](https://coveralls.io/r/rosylilly/grape-msgpack?branch=master) [![Code Climate](https://codeclimate.com/github/rosylilly/grape-msgpack.svg)](https://codeclimate.com/github/rosylilly/grape-msgpack)
 
 Message pack formatter for grape.
 
