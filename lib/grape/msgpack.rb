@@ -36,17 +36,9 @@ module Grape
   end
 end
 
-class << Grape::Formatter::Base
-  FORMATTERS[:msgpack] = Grape::Msgpack::Formatter
-end
-
-class << Grape::ErrorFormatter::Base
-  FORMATTERS[:msgpack] = Grape::Msgpack::ErrorFormatter
-end
-
-class << Grape::Parser::Base
-  PARSERS[:msgpack] = Grape::Msgpack::Parser
-end
+Grape::Formatter.register(:msgpack, Grape::Msgpack::Formatter)
+Grape::ErrorFormatter.register(:msgpack, Grape::Msgpack::ErrorFormatter)
+Grape::Parser.register(:msgpack, Grape::Msgpack::Parser)
 
 Grape::ContentTypes::CONTENT_TYPES[:msgpack] = 'application/x-msgpack'
 

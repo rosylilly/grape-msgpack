@@ -4,3 +4,4 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'coveralls', require: false
+# gem 'grape', github: 'ruby-grape/grape'
